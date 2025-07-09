@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.102.03 - Template Mikrotik Router e Switch SNMPv2</template>
+            <name>9.102.03 - Template Mikrotik Router e Switch SNMPv2</name>
+            <description>9 - Template Aplicavel
+102 - Dispositivo Mikrotik
+03 - Dispositivo Ethernet</description>
+            <templates>
+                <template>
+                    <name>1.000.10 - Template de Backup Generico</name>
+                </template>
+                <template>
+                    <name>1.102.04 - Template Net Mikrotik SNMPv2</name>
+                </template>
+                <template>
+                    <name>1.102.10 - Template Mikrotik Optical SNMPv2</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Health</name>
+                </application>
+                <application>
+                    <name>Wireless</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>PPPoE Connections</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.9.9.150.1.1.1.0</snmp_oid>
+                    <key>ifPPPoEActives</key>
+                    <delay>60</delay>
+                    <applications>
+                        <application>
+                            <name>Geral</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>({change()} &lt;= (-50))
+and
+({change()} &gt; (-100))</expression>
+                            <name>Queda PPPoE Brusca</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>({change()} &lt;= (-100))</expression>
+                            <name>Queda PPPoE Grave</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>({change()} &lt;= (-15))
+and
+({change()} &gt; (-25))</expression>
+                            <name>Queda PPPoE Leve</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>({change()} &lt;= (-25))
+and
+({change()} &gt; (-50))</expression>
+                            <name>Queda PPPoE Significativa</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Voltage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.14988.1.1.3.8.0</snmp_oid>
+                    <key>mikrotik.voltage</key>
+                    <delay>60</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>V</units>
+                    <applications>
+                        <application>
+                            <name>Health</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.1</params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <expression>(100-({last()} / {avg(12h)})*100) &gt;= 15</expression>
+                            <name>Voltagem 15% abaixo da média de uma hora atrás</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>(100-({last()} / {avg(12h)})*100) &gt;= 30</expression>
+                            <name>Voltagem 30% abaixo da média de uma hora atrás</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>(100-({last()} / {avg(12h)})*100) &gt;= 40</expression>
+                            <name>Voltagem 40% abaixo da média de uma hora atrás</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Clientes Conectados</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.14988.1.1.1.3.1.11.3</snmp_oid>
+                    <key>mtxrWlApClientCount</key>
+                    <delay>60</delay>
+                    <description>by: Thiago Moreira</description>
+                    <applications>
+                        <application>
+                            <name>Wireless</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$TEMP_WARN}</macro>
+                    <value>65</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_WARN:"CPU"}</macro>
+                    <value>75</value>
+                </macro>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                    <value>mikrotik</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

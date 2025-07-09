@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.101.01 - Template Ubiquiti Wireless Enlace</template>
+            <name>9.101.01 - Template Ubiquiti Wireless Enlace</name>
+            <description>9 - Template Aplicavel
+101 - Fabricante Ubiquiti
+01 - Dispositivos de Enlace Wireless (AP ou Station)</description>
+            <templates>
+                <template>
+                    <name>1.000.10 - Template de Backup Generico</name>
+                </template>
+                <template>
+                    <name>1.101.03 - Template Net Ubiquiti AirOS SNMPv1</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Wireless</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Estações Conectadas</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.41112.1.4.5.1.15.1</snmp_oid>
+                    <key>ubntWlStatStaCount</key>
+                    <delay>60</delay>
+                    <trends>0d</trends>
+                    <description>By: Thiago Moreira</description>
+                    <applications>
+                        <application>
+                            <name>Wireless</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$BACKUP_PASS}</macro>
+                    <value>linuxap@@##@@</value>
+                </macro>
+                <macro>
+                    <macro>{$BACKUP_PORT}</macro>
+                    <value>22</value>
+                </macro>
+                <macro>
+                    <macro>{$BACKUP_USER}</macro>
+                    <value>ubnt</value>
+                </macro>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                    <value>ubnt_wifi</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

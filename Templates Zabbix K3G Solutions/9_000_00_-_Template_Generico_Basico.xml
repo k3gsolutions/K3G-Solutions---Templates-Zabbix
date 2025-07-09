@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.000.00 - Template Generico Basico</template>
+            <name>9.000.00 - Template Generico Básico</name>
+            <description>9 - Template Aplicavel
+000 - Dispositivo Generico
+00 - Disponibilidade</description>
+            <templates>
+                <template>
+                    <name>1.000.00 - Template Module ICMP Ping</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <macros>
+                <macro>
+                    <macro>{$ICMP_LOSS_WARN}</macro>
+                    <value>50</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

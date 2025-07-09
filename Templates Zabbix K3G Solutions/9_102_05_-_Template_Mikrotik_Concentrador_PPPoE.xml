@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.102.05 - Template Mikrotik Concentrador PPPoE</template>
+            <name>9.102.05 - Template Mikrotik Concentrador PPPoE</name>
+            <description>9 - Template Aplicavel
+102 - Dispositivo Mikrotik
+05 - Concentrador PPPoE</description>
+            <templates>
+                <template>
+                    <name>1.000.10 - Template de Backup Generico</name>
+                </template>
+                <template>
+                    <name>1.102.04 - Template Net Mikrotik SNMPv2</name>
+                </template>
+                <template>
+                    <name>1.102.707 - Template Mikrotik PPPoE Server</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Numero de interfaces</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>iso.3.6.1.2.1.2.1.0</snmp_oid>
+                    <key>ifNumber</key>
+                    <delay>5s</delay>
+                    <applications>
+                        <application>
+                            <name>Interfaces de rede</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>Impertech</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_WARN}</macro>
+                    <value>65</value>
+                </macro>
+                <macro>
+                    <macro>{$TEMP_WARN:"CPU"}</macro>
+                    <value>75</value>
+                </macro>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                    <value>mikrotik</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

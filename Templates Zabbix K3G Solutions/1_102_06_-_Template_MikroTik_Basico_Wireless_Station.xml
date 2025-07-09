@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.102.06 - Template MikroTik Basico Wireless Station</template>
+            <name>1.102.06 - Template MikroTik Basico Wireless Station</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Wireless-Station</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Wireless Station</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.1.1.1.5]</snmp_oid>
+                    <key>Wireless-Station</key>
+                    <delay>5m</delay>
+                    <lifetime>0d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Wireless Station - Frequencia</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-Station-Frequencia[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless-Station</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless Station - RxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.1.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-Station-RxRate[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless-Station</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless Station - Sinal</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-Station-Siinal[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Wireless-Station</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&lt;=-70</expression>
+                                    <name>Nível de sinal {#SNMPVALUE} baixo # {ITEM.LASTVALUE} - IP: {HOST.CONN}</name>
+                                    <priority>DISASTER</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless Station - TxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-Station-TxRate[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless-Station</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Wireless Station - {#SNMPVALUE} - Sinal</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>1.102.06 - Template MikroTik Basico Wireless Station</host>
+                                        <key>Wireless-Station-Siinal[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

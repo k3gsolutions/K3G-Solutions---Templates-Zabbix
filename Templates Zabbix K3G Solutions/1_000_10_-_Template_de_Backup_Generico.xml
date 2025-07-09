@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.000.10 - Template de Backup Generico</template>
+            <name>1.000.10 - Template de Backup Generico</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Backup</name>
+                    <type>EXTERNAL</type>
+                    <key>backup.sh[{$VENDOR},{HOST.CONN},{$BACKUP_PORT},{$BACKUP_USER},{$BACKUP_PASS},{HOST.HOST}.txt]</key>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <units>byte</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Falha ao executar o backup</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

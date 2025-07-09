@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.102.05 - Template MikroTik - Basico Wireless AP</template>
+            <name>1.102.05 - Template MikroTik - Basico Wireless AP</name>
+            <templates>
+                <template>
+                    <name>1.102.01 - Template Mikrotik Basico SNMPv2</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Wireless</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Wireless APs</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.1.3.1.4]</snmp_oid>
+                    <key>Wireless-APs</key>
+                    <delay>5m</delay>
+                    <lifetime>1d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Wireless AP - ClientCount</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-ClientCount.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - ClientCountAuth</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-ClientCountAuth.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - Frequencia</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-Freuencia.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - Name</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-Name.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - NoiseFloor</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-NoiseFloor.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - RxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-RxRate.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP - TxCCQ</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-TxCCQ.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Wireless AP -  TxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.3.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>Wireless-AP-TxRate.[{#SNMPINDEX}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <applications>
+                                <application>
+                                    <name>Wireless</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Wireless AP - {#SNMPVALUE} - NoiseFloor</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>1.102.05 - Template MikroTik - Basico Wireless AP</host>
+                                        <key>Wireless-AP-NoiseFloor.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Wireless AP - {#SNMPVALUE} - Tx/Rx Rate</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>1.102.05 - Template MikroTik - Basico Wireless AP</host>
+                                        <key>Wireless-AP-RxRate.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <item>
+                                        <host>1.102.05 - Template MikroTik - Basico Wireless AP</host>
+                                        <key>Wireless-AP-TxRate.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Wireless AP - {#SNMPVALUE} - TxCCQ</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>1.102.05 - Template MikroTik - Basico Wireless AP</host>
+                                        <key>Wireless-AP-TxCCQ.[{#SNMPINDEX}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.102.10 - Template Mikrotik Optical SNMPv2</template>
+            <name>1.102.10 - Template Mikrotik Optical SNMPv2</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Interfaces Ópticas</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Interfaces Ópticas de Rede</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.19.1.1.2]</snmp_oid>
+                    <key>mtxrOptical.discovery</key>
+                    <delay>60</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Estado do Sinal de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalRxLoss.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Alarm state</name>
+                            </valuemap>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalRxPower.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Alarm state</name>
+                            </valuemap>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Voltagem</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalSupplyVoltage.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>V</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Temperatura</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalTemperature.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>ºC</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Estado do Sinal de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalTxFault.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Alarm state</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=1</expression>
+                                    <name>Interface {#SNMPVALUE}: Falha no Sinal de TX</name>
+                                    <priority>HIGH</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface {#SNMPVALUE}: Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>mtxrOpticalTxPower.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{1.102.10 - Template Mikrotik Optical SNMPv2:mtxrOpticalRxLoss.[{#SNMPINDEX}].last()}=1
+and
+{1.102.10 - Template Mikrotik Optical SNMPv2:mtxrOpticalRxPower.[{#SNMPINDEX}].diff()}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{1.102.10 - Template Mikrotik Optical SNMPv2:mtxrOpticalRxLoss.[{#SNMPINDEX}].last()}=0</recovery_expression>
+                            <name>Interface {#SNMPVALUE}: Perda de sinal de RX</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

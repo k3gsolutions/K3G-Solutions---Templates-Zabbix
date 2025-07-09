@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.102.07 - Template MikroTik Basico Wireless Registration Table</template>
+            <name>1.102.07 - Template MikroTik Basico Wireless Registration Table</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Wireless</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Wireless Registration Table</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.1.2.1.1]</snmp_oid>
+                    <key>Wireless-Registration-Table</key>
+                    <delay>5m</delay>
+                    <lifetime>1d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>NoiseFloor</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.12.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-NoiseFloor[{#SNMPVALUE}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>RouterOSv</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-RouterOSv[{#SNMPVALUE}]</key>
+                            <delay>3600</delay>
+                            <history>2d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>RxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-RxRatel[{#SNMPVALUE}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Signal</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-Signal[{#SNMPVALUE}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>TxRate</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-TxRatel[{#SNMPVALUE}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>bps</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Uptime</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.11.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable-Uptimel[{#SNMPVALUE}]</key>
+                            <delay>15m</delay>
+                            <history>2d</history>
+                            <units>uptime</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Name</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.1.2.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>WirelessRegistrationTable[{#SNMPVALUE}]</key>
+                            <delay>3600</delay>
+                            <history>2d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>O CLIENTE {#SNMPVALUE}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

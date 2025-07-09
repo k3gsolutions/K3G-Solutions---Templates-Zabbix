@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>MATRIZ</name>
+                </group>
+                <group>
+                    <name>MONITORAMENTO</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>114 - Template Clientes Conectados</template>
+            <name>114 - Template Clientes Conectados</name>
+            <groups>
+                <group>
+                    <name>MATRIZ</name>
+                </group>
+                <group>
+                    <name>MONITORAMENTO</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Clientes Conectados</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Azaleia</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Azaleia,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Azaleia</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Bela-Vista</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Bela_Vista,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Bela_Vista</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Ecoville</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoe-Ecoville,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Ecoville</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Iranduba</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Iranduba,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Iranduba</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Ismael</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Ismael,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Ismael</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Jasmin</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Jasmin,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Jasmin</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Jmd</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Jmd,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Jmd</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Km6</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Km6,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Km6</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Lirio</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Lirio,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Lirio</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-MariaZeneide</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-MariaZeneide,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-MariaZeneide</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Matriz</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Matriz,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Matriz</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Monte</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Monte,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Monte</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Nepal</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Nepal,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Nepal</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoe-Nova-Manaus</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoe-Nova-Manaus,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoe-Nova-Manaus</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Orquidea</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Orquidea,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Orquidea</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-OuroVerde</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-OuroVerde,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-OuroVerde</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Paraiba</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Paraiba,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Paraiba</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Piorini</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Piorini,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Piorini</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Pq-Luzitano</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Pq-Luzitano,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Pq-Luzitano</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-P_Baroes</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-P_Baroes,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-P_Baroes</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-ResidencialAmazonas</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-ResidencialAmazonas,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-ResidencialAmazonas</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Taruma</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Taruma,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Taruma</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-UniaoDaVitoria</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-UniaoDaVitoria,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-UniaoDaVitoria</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Verona</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Verona,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Verona</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Clientes Conectados | PPPoE-Vianorte</name>
+                    <type>SSH</type>
+                    <key>ssh.run[PPPoE-Vianorte,10.10.1.2,50022]</key>
+                    <delay>2m</delay>
+                    <history>180d</history>
+                    <params>interface pppoe-server print count-only where service=PPPoE-Vianorte</params>
+                    <username>zabbix</username>
+                    <password>zabbix</password>
+                    <applications>
+                        <application>
+                            <name>Clientes Conectados</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$PASSWORD}</macro>
+                    <value>zabbix</value>
+                </macro>
+                <macro>
+                    <macro>{$USERNAME}</macro>
+                    <value>zabbix</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

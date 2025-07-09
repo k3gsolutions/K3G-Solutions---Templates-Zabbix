@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.102.04 - Template Mikrotik Wireless SNMPv2</template>
+            <name>9.102.04 - Template Mikrotik Wireless SNMPv2</name>
+            <description>Monitora dispositivos wireless
+- Template Mikrotik Basico Wireless AP
+-  Template MikroTik Basico Wireless Registration Table</description>
+            <templates>
+                <template>
+                    <name>1.000.10 - Template de Backup Generico</name>
+                </template>
+                <template>
+                    <name>1.102.05 - Template MikroTik - Basico Wireless AP</name>
+                </template>
+                <template>
+                    <name>1.102.07 - Template MikroTik Basico Wireless Registration Table</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <macros>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                    <value>mikrotik</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

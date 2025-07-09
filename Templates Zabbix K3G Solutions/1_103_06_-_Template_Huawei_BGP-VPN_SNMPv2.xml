@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.103.06 - Template Huawei BGP-VPN SNMPv2</template>
+            <name>1.103.06 - Template Huawei BGP-VPN SNMPv2</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Estatísticas BGP</name>
+                </application>
+                <application>
+                    <name>Peers BGP</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Número de Sessões BGP</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.4.1.0</snmp_oid>
+                    <key>hwBgpPeerSessionNum</key>
+                    <delay>1h</delay>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Estatísticas BGP</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Número de Sessões eBGP</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.4.3.0</snmp_oid>
+                    <key>hwEBgpPeerSessionNum</key>
+                    <delay>1h</delay>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Estatísticas BGP</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Número de Sessões iBGP</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.2011.5.25.177.1.4.2.0</snmp_oid>
+                    <key>hwIBgpPeerSessionNum</key>
+                    <delay>1h</delay>
+                    <history>30d</history>
+                    <applications>
+                        <application>
+                            <name>Estatísticas BGP</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Descoberta de Peers BGP</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#PEER},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.4,{#TABLE},1.3.6.1.4.1.2011.5.25.177.1.1.1.1.6,{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.2]</snmp_oid>
+                    <key>bgp.vpn.discovery</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Número de Reconexões</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerFsmEstablishedCounter[{#TABLE}:{#PEER}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Tempo de Conexão</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerFsmEstablishedTime[{#TABLE}:{#PEER}]</key>
+                            <units>s</units>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change()} &gt; 0
+and
+({last(#3)} &gt; {last(#2)}
+or
+{last(#2)} = 0)</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()} &gt; 10m</recovery_expression>
+                                    <name>{#TABLE}[{#PEER} (AS{#ASN})]: Sessão BGP Reiniciada (Flap)</name>
+                                    <priority>WARNING</priority>
+                                    <description>Flap detectado na sessão BGP</description>
+                                    <type>MULTIPLE</type>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>BGP.PEER.ADDRESS</tag>
+                                            <value>{#PEER}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>BGP.PEER.ASN</tag>
+                                            <value>{#ASN}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Prefixos Recebidos Instalados</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.3.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerPrefixActiveCounter[{#TABLE}:{#PEER}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Total de Prefixos Enviados</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.3.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerPrefixAdvCounter[{#TABLE}:{#PEER}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Total de Prefixos Recebidos</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.3.1.1.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerPrefixRcvCounter[{#TABLE}:{#PEER}]</key>
+                            <delay>5m</delay>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Status da Sessão</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerState[{#TABLE}:{#PEER}]</key>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>HUAWEI-BGP-VPN-MIB::hwBgpPeerState</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change()} &lt; 0
+and
+{last(#2)} = 6</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()} = 6</recovery_expression>
+                                    <name>{#TABLE}[{#PEER} (AS{#ASN})]: Sessão BGP Down</name>
+                                    <priority>HIGH</priority>
+                                    <description>Sessão BGP Down com o peer {#PEER} na VRF {#TABLE}</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>BGP.PEER.ADDRESS</tag>
+                                            <value>{#PEER}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>BGP.PEER.ASN</tag>
+                                            <value>{#ASN}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Motivo de Indisponibilidade</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.177.1.1.2.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>hwBgpPeerUnAvaiReason[{#TABLE}:{#PEER}]</key>
+                            <applications>
+                                <application>
+                                    <name>Peers BGP</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>HUAWEI-BGP-VPN-MIB::hwBgpPeerUnAvaiReason</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Número de Prefixos</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>199C0D</color>
+                                    <item>
+                                        <host>1.103.06 - Template Huawei BGP-VPN SNMPv2</host>
+                                        <key>hwBgpPeerPrefixActiveCounter[{#TABLE}:{#PEER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>F63100</color>
+                                    <item>
+                                        <host>1.103.06 - Template Huawei BGP-VPN SNMPv2</host>
+                                        <key>hwBgpPeerPrefixAdvCounter[{#TABLE}:{#PEER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>2774A4</color>
+                                    <item>
+                                        <host>1.103.06 - Template Huawei BGP-VPN SNMPv2</host>
+                                        <key>hwBgpPeerPrefixRcvCounter[{#TABLE}:{#PEER}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Descoberta de Peers BGP - eBGP IPv4</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#PEER},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.4.3.1.1.1.4,{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.2.3.1.1.1.4,{#TABLE},1.3.6.1.4.1.2011.5.25.177.1.1.1.1.6.3.1.1.1.4,{#SOURCEADDR},1.3.6.1.4.1.2011.5.25.177.1.1.8.1.5.3.1.4]</snmp_oid>
+                    <key>bgp.vpn.ext.discovery</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Latência</name>
+                            <type>SSH</type>
+                            <key>ssh.run[ICMP_{#TABLE}_{#PEER},{HOST.CONN},{$MONITOR_PORT},&lt;encoding&gt;]</key>
+                            <history>30d</history>
+                            <status>DISABLED</status>
+                            <units>ms</units>
+                            <params>ping -vpn-instance {#TABLE} -c 2 -a {#SOURCEADDR} {#PEER}</params>
+                            <username>{$MONITOR_USER}</username>
+                            <password>{$MONITOR_PASS}</password>
+                            <applications>
+                                <application>
+                                    <name>Estatísticas BGP</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>REGEX</type>
+                                    <params>\d{1,3}\/(\d{1,3})\/\d{1,3}
+\1</params>
+                                    <error_handler>CUSTOM_ERROR</error_handler>
+                                    <error_handler_params>Sem resposta pela origem {#SOURCEADDR}</error_handler_params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Descoberta de Peers BGP - eBGP IPv4 (NE20)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#PEER},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.4.6.1.1.1.4,{#ASN},1.3.6.1.4.1.2011.5.25.177.1.1.2.1.2.6.1.1.1.4,{#TABLE},1.3.6.1.4.1.2011.5.25.177.1.1.1.1.6.6.1.1.1.4,{#SOURCEADDR},1.3.6.1.4.1.2011.5.25.177.1.1.8.1.5.6.1.4]</snmp_oid>
+                    <key>bgp.vpn.ext2.discovery</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#TABLE}[{#PEER} (AS{#ASN})]: Latência</name>
+                            <type>SSH</type>
+                            <key>ssh.run[ICMP_NE20_{#TABLE}_{#PEER},{HOST.CONN},{$MONITOR_PORT},&lt;encoding&gt;]</key>
+                            <history>30d</history>
+                            <status>DISABLED</status>
+                            <units>ms</units>
+                            <params>ping -vpn-instance {#TABLE} -c 2 -a {#SOURCEADDR} {#PEER}</params>
+                            <username>{$MONITOR_USER}</username>
+                            <password>{$MONITOR_PASS}</password>
+                            <applications>
+                                <application>
+                                    <name>Estatísticas BGP</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>REGEX</type>
+                                    <params>\d{1,3}\/(\d{1,3})\/\d{1,3}
+\1</params>
+                                    <error_handler>CUSTOM_ERROR</error_handler>
+                                    <error_handler_params>Sem resposta pela origem {#SOURCEADDR}</error_handler_params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

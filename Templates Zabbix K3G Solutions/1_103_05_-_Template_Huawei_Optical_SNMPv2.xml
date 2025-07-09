@@ -1,0 +1,561 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>1.103.05 - Template Huawei Optical SNMPv2</template>
+            <name>1.103.05 - Template Huawei Optical SNMPv2</name>
+            <groups>
+                <group>
+                    <name>901 - Templates Abstratos</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Interfaces Ópticas</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Número de interfaces ópticas</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.2.1.47.1.1.1.1.7</snmp_oid>
+                    <key>entPhysicalName</key>
+                    <delay>5m</delay>
+                    <history>7d</history>
+                    <description>O número de interfaces ópticas de rede (independende do seu estado atual) presentes nesse sistema.</description>
+                    <applications>
+                        <application>
+                            <name>Interfaces Ópticas</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Interfaces Ópticas de Rede</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},1.3.6.1.2.1.47.1.1.1.1.7,{#IFOPERSTATUS},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.18]</snmp_oid>
+                    <key>hwentity.discovery</key>
+                    <delay>1h</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFOPERSTATUS}</macro>
+                                <value>1</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>You may also consider using IF-MIB::ifType or IF-MIB::ifAlias for discovery depending on your filtering needs.
+
+{$HUAWEI_COMMUNITY} is a global macro.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Interface $1: Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.32.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalLaneRxPower[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência de Recepção Óptica</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>if (value.length == 0) {
+    throw "Valor Invalido: " + value;
+}
+
+var pieces = value.split(',');
+
+var out = 0;
+var i;
+for (i = 0; i &lt; pieces.length; i++) {
+	out += Number(pieces[i]);
+}
+
+return (out/pieces.length)*(0.01);</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.33.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalLaneTxPower[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência de Transmissão Óptica</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JAVASCRIPT</type>
+                                    <params>if (value.length == 0) {
+    throw "Valor Invalido: " + value;
+}
+var pieces = value.split(',');
+var out = 0;
+var i;
+for (i = 0; i &lt; pieces.length; i++) {
+	out += Number(pieces[i]);
+}
+
+return (out/pieces.length)*(0.01);</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Superior Máximo de Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalRxHighThreshold.[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência máxima de recepção para que a porta seja considerada UP. Após esse limite, a porta passará automaticamente para o estado DOWN.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Superior de Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.21.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalRxHighWarnThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência máxima aceitável para que a recepção aconteça sem contabilizar erros de interface.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Inferior Minimo de Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalRxLowThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência mínima de recepção para que a porta seja considerada UP. Após esse limite, a porta passará automaticamente para o estado DOWN.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Inferior de Potência de RX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.20.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalRxLowWarnThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência mínima aceitável para que a recepção aconteça sem contabilizar erros de interface.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Serial</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalSerialNumber[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Identificador Serial do Plugável</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{diff()}=1</expression>
+                                    <name>Interface {#SNMPVALUE}: Plugável Inserido/Alterado</name>
+                                    <priority>INFO</priority>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>INTERFACE.NAME</tag>
+                                            <value>{#SNMPVALUE}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Temperatura</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalTemperature[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>ºC</units>
+                            <description>Temperatura do Plugável</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;75</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last()}&lt;75</recovery_expression>
+                                    <name>Interface {#SNMPVALUE}: Temperatura Elevada &gt; 75º</name>
+                                    <priority>WARNING</priority>
+                                    <description>Dispositivo detectou aumento de temperatura do Plugável
+- Verificar possível falha na refrigeracao no SITE.
+- Verificar possível problema no plugável</description>
+                                    <manual_close>YES</manual_close>
+                                    <tags>
+                                        <tag>
+                                            <tag>INTERFACE.NAME</tag>
+                                            <value>{#SNMPVALUE}</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Superior Máximo de Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.16.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalTxHighThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência máxima de transmissão para que a porta seja considerada UP. Após esse limite, a porta passará automaticamente para o estado DOWN.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Superior de Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.23.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalTxHighWarnThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência máxima aceitável para que a transmissão aconteça sem contabilizar erros de interface.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Inferior Mínimo de Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.15.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalTxLowThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência mínima de transmissão para que a porta seja considerada UP. Após esse limite, a porta passará automaticamente para o estado DOWN.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Limite Inferior de Potência de TX</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.22.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalTxLowWarnThreshold[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>dBm</units>
+                            <description>Potência mínima aceitável para que a transmissão aconteça sem contabilizar erros de interface.</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Fabricante</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.24.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalVenderName[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Fabricante do Plugável</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Modelo</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.25.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalVenderPn[{#SNMPVALUE}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <description>Modelo do Plugável</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Interface $1: Voltagem</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.2011.5.25.31.1.1.3.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>hwEntityOpticalVoltage[{#SNMPVALUE}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>V</units>
+                            <description>Nível de Tensão do Plugável</description>
+                            <applications>
+                                <application>
+                                    <name>Interfaces Ópticas</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalLaneRxPower[{#SNMPVALUE}].avg(5)}
+&lt;=
+({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalRxLowThreshold[{#SNMPVALUE}].avg(5)}*0.9))
+ and
+(
+{1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalLaneRxPower[{#SNMPVALUE}].delta(1d)}
+&lt;&gt;
+0.1
+)</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalLaneRxPower[{#SNMPVALUE}].avg(5)}
+&gt;
+({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalRxLowThreshold[{#SNMPVALUE}].avg(5)}*0.9)</recovery_expression>
+                            <name>Interface {#SNMPVALUE}: Baixa Potência de RX</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>INTERFACE.NAME</tag>
+                                    <value>{#SNMPVALUE}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalLaneRxPower[{#SNMPVALUE}].avg(5)} 
+&gt;=
+({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalRxHighThreshold.[{#SNMPVALUE}].avg(5)}*0.9))
+ and
+(
+{1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalRxHighWarnThreshold[{#SNMPVALUE}].delta(1d)}
+&lt;&gt;
+0.1
+)</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalLaneRxPower[{#SNMPVALUE}].avg(5)}
+&lt;
+({1.103.05 - Template Huawei Optical SNMPv2:hwEntityOpticalRxHighThreshold.[{#SNMPVALUE}].avg(5)}*0.9)</recovery_expression>
+                            <name>Interface {#SNMPVALUE}: Potência de RX Muito Elevada</name>
+                            <priority>AVERAGE</priority>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>INTERFACE.NAME</tag>
+                                    <value>{#SNMPVALUE}</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Interface {#SNMPVALUE}: Potência Óptica</name>
+                            <show_triggers>NO</show_triggers>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>00FF00</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalLaneRxPower[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalRxHighWarnThreshold[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>DASHED_LINE</drawtype>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalRxLowWarnThreshold[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalRxHighThreshold.[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalRxLowThreshold[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>5</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>0000FF</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalLaneTxPower[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Interface {#SNMPVALUE}: Temperatura</name>
+                            <show_triggers>NO</show_triggers>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>AA0000</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalTemperature[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Interface {#SNMPVALUE}: Voltagem</name>
+                            <show_triggers>NO</show_triggers>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>1.103.05 - Template Huawei Optical SNMPv2</host>
+                                        <key>hwEntityOpticalVoltage[{#SNMPVALUE}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+        </templates></zabbix_export>

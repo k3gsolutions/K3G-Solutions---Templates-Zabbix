@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.103.03 - Template Huawei Ethernet SNMPv2</template>
+            <name>9.103.03 - Template Huawei Ethernet SNMPv2</name>
+            <description>9 - Template Aplicavel
+103 - Dispositivo Huawei
+03 - Dispositivo Ethernet</description>
+            <templates>
+                <template>
+                    <name>1.000.10 - Template de Backup Generico</name>
+                </template>
+                <template>
+                    <name>1.103.04 - Template Net Huawei VRP SNMPv2</name>
+                </template>
+                <template>
+                    <name>1.103.05 - Template Huawei Optical SNMPv2</name>
+                </template>
+                <template>
+                    <name>1.103.06 - Template Huawei BGP-VPN SNMPv2</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Online Users</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.2011.5.2.1.14.1.1.0</snmp_oid>
+                    <key>hwTotalOnlineNum</key>
+                    <delay>60s</delay>
+                    <history>2w</history>
+                    <applications>
+                        <application>
+                            <name>Geral</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$VENDOR}</macro>
+                    <value>huawei</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<zabbix_export version="5.0" date="2021-05-22T16:21:27Z"><groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <templates><template>
+            <template>9.106.10 - Template Fiberhome OLT SNMPv2</template>
+            <name>9.106.10 - Template Fiberhome OLT SNMPv2</name>
+            <templates>
+                <template>
+                    <name>1.106.01 - Template Fiberhome OLT SNMPv2</name>
+                </template>
+                <template>
+                    <name>9.000.00 - Template Generico Basico</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>900 - Templates Aplicáveis</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>System</name>
+                </application>
+            </applications>
+            <macros>
+                <macro>
+                    <macro>{$SNMP_COMMUNITY}</macro>
+                    <value>adsl</value>
+                </macro>
+            </macros>
+        </template>
+        </templates></zabbix_export>
